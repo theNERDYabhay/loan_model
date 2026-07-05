@@ -319,6 +319,3 @@ If you like this project:
 Give this repository a ⭐ on GitHub and feel free to contribute.
 ---
 
-# 📜 License
-
-This project is licensed under the MIT License.
