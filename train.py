@@ -21,3 +21,19 @@ print(f"Model accuracy: {accuracy}")
 joblib.dump(model, 'model/loan_model.pkl')
 
 print("Model saved to 'model/loan_model.pkl'")
+
+from matplotlib import pyplot as plt
+from sklearn.tree import plot_tree
+
+plt.figure(figsize=(18, 10))
+
+plot_tree(
+    model,
+    feature_names=["Age", "Income", "LoanAmount", "CreditScore"],
+    class_names=["Rejected", "Approved"],   # or use model.classes_.astype(str)
+    filled=True,
+    rounded=True,
+    fontsize=10
+)
+
+plt.show()
