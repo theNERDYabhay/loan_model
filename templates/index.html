@@ -1,38 +1,285 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Predictor</title>
 
-    <title>Loan Prediction</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+}
+input,textarea{
+    user-select:text;
+    -webkit-user-select:text;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#2563eb,#6d28d9);
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    filter:blur(50px);
+    z-index:-1;
+}
+
+body::before{
+    width:320px;
+    height:320px;
+    background:#ffffff22;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    width:350px;
+    height:350px;
+    background:#ec489922;
+    right:-120px;
+    bottom:-120px;
+}
+
+.container{
+    width:100%;
+    max-width:1150px;
+    display:grid;
+    grid-template-columns:1fr 470px;
+    gap:50px;
+    align-items:center;
+}
+
+.left{
+    color:white;
+}
+
+.left h1{
+    font-size:clamp(2.5rem,5vw,4rem);
+    margin-bottom:20px;
+}
+
+.left p{
+    line-height:1.8;
+    opacity:.9;
+    margin-bottom:30px;
+}
+
+.feature{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:15px 0;
+}
+
+.feature i{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+}
+
+.card h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.group{margin-bottom:18px;}
+
+label{
+    display:block;
+    color:white;
+    margin-bottom:8px;
+}
+
+.box{
+    position:relative;
+}
+
+.box i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:white;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+input[type=number]{
+    appearance:textfield;
+    -moz-appearance:textfield;
+}
+
+.box input{
+    width:100%;
+    height:55px;
+    padding:0 16px 0 48px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.08);
+    color:white;
+    outline:none;
+    transition:.3s;
+}
+
+.box input::placeholder{color:#ddd;}
+
+.box input:focus{
+    background:rgba(255,255,255,.15);
+    border-color:white;
+}
+
+button{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#3b82f6,#9333ea);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.12);
+    color:white;
+    text-align:center;
+}
+
+.footer{
+    margin-top:18px;
+    text-align:center;
+    color:white;
+    font-size:13px;
+}
+
+@media(max-width:900px){
+.container{grid-template-columns:1fr;}
+.left{text-align:center;}
+.card{max-width:500px;margin:auto;}
+}
+</style>
 </head>
 
 <body>
 
-<h1>Loan Approval Prediction</h1>
+<div class="container">
+
+<div class="left">
+<h1>🏦 Smart Loan Approval</h1>
+<p>Instantly predict your loan approval using our Machine Learning model.</p>
+
+<div class="feature"><i class="fa-solid fa-bolt"></i>Fast Prediction</div>
+<div class="feature"><i class="fa-solid fa-lock"></i>Secure</div>
+<div class="feature"><i class="fa-solid fa-brain"></i>AI Powered</div>
+
+</div>
+
+<div class="card">
+
+<h2>Loan Prediction</h2>
 
 <form action="/predict" method="POST">
 
-    <label>Age</label><br>
-    <input type="number" name="age" required><br><br>
+<div class="group">
+<label>Age</label>
+<div class="box">
+<i class="fa-regular fa-user"></i>
+<input type="number" name="age" placeholder="Enter Age" required>
+</div>
+</div>
 
-    <label>Income</label><br>
-    <input type="number" name="income" required><br><br>
+<div class="group">
+<label>Annual Income</label>
+<div class="box">
+<i class="fa-solid fa-indian-rupee-sign"></i>
+<input type="number" step="any" name="income" placeholder="Enter Income" required>
+</div>
+</div>
 
-    <label>Loan Amount</label><br>
-    <input type="number" name="loan" required><br><br>
+<div class="group">
+<label>Loan Amount</label>
+<div class="box">
+<i class="fa-solid fa-money-bill-wave"></i>
+<input type="number" step="any" name="loan" placeholder="Enter Loan Amount" required>
+</div>
+</div>
 
-    <label>Credit Score</label><br>
-    <input type="number" name="credit" required><br><br>
+<div class="group">
+<label>Credit Score</label>
+<div class="box">
+<i class="fa-solid fa-chart-line"></i>
+<input type="number" name="credit" placeholder="300 - 900" required>
+</div>
+</div>
 
-    <button type="submit">Predict</button>
+<button type="submit"><i class="fa-solid fa-chart-column"></i> Predict Loan Status</button>
 
 </form>
 
 {% if prediction %}
-
-<h2>{{ prediction }}</h2>
-
+<div class="result">
+<h3>Prediction Result</h3>
+<p>{{ prediction }}</p>
+</div>
 {% endif %}
+
+<div class="footer">
+<i class="fa-solid fa-shield-halved"></i> Your data is secure.
+</div>
+
+</div>
+
+</div>
+
+<script>
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+</script>
 
 </body>
 </html>
